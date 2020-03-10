@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - deploy
 
 env:
   AZURE_WEBAPP_NAME: macpro
