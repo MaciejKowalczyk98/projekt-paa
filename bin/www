@@ -89,15 +89,4 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-function loggingFilter(request, next, callback) {
-    var reqMethod = request.type;
-    var reqUri = request.url;
-    next(request, function (error, response) {
-        if (error) {
-            log(reqMethod + ' ' + reqUri + ': ' + JSON.stringify(error));
-        } else {
-            log(reqMethod + ' ' + reqUri + ': ' + response.status);
-        }
-        callback(error, response);
-    });
-}
+
