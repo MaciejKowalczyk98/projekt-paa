@@ -1,9 +1,8 @@
 const router = require('koa-router')()
 
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello whatever!'
-  })
+  tasks = await store.listTasks()
+  await ctx.render('index', { tasks })
 })
 
 router.get('/string', async (ctx, next) => {
@@ -17,3 +16,4 @@ router.get('/json', async (ctx, next) => {
 })
 
 module.exports = router
+const store = require('../store')
