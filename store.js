@@ -1,11 +1,7 @@
-
 const storage = require('azure-storage')
 const service = storage.createTableService()
 const table = 'tasks'
 const uuid = require('uuid')
-var retryOperations = new storage.ExponentialRetryPolicyFilter();
-var tasks = azure.createTableService().withFilter(retryOperations);
-
 const init = async () => (
   new Promise((resolve, reject) => {
     service.createTableIfNotExists(table, (error, result, response) => {
@@ -13,6 +9,7 @@ const init = async () => (
     })
   })
 )
+
 const createTask = async (title) => (
   new Promise((resolve, reject) => {
     const generator = storage.TableUtilities.entityGenerator
@@ -28,6 +25,7 @@ const createTask = async (title) => (
     })
   })
 )
+
 const listTasks = async () => (
   new Promise((resolve, reject) => {
     const query = new storage.TableQuery()
@@ -43,6 +41,7 @@ const listTasks = async () => (
     })
   })
 )
+
 const updateTaskStatus = async (id, status) => (
   new Promise((resolve, reject) => {
     const generator = storage.TableUtilities.entityGenerator
@@ -56,7 +55,8 @@ const updateTaskStatus = async (id, status) => (
       !error ? resolve() : reject()
     })
   })
-}
+)
+
 module.exports = {
   init,
   createTask,
